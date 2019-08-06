@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object NetworkClient {
 
-    private val BASE_URL = "https://vexdb.io"
+    private val BASE_URL = "https://vexdb.io/"
     private val TIMEOUT = 10
     var retrofit: Retrofit? = null
     /*
