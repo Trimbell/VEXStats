@@ -1,4 +1,4 @@
-package com.trimbell.vexstats.ui.dashboard
+package com.trimbell.vexstats.ui.teams
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,20 +10,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.trimbell.vexstats.R
 
-class DashboardFragment : Fragment() {
+class TeamsFragment : Fragment() {
 
-    private lateinit var dashboardViewModel: DashboardViewModel
+    private lateinit var teamsViewModel: TeamsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        dashboardViewModel =
-            ViewModelProviders.of(this).get(DashboardViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
-        val textView: TextView = root.findViewById(R.id.text_dashboard)
-        dashboardViewModel.text.observe(this, Observer {
+        teamsViewModel =
+            ViewModelProviders.of(this).get(TeamsViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_teams, container, false)
+        val textView: TextView = root.findViewById(R.id.text_notifications)
+        teamsViewModel.text.observe(this, Observer {
             textView.text = it
         })
         return root

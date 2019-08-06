@@ -1,4 +1,4 @@
-package com.trimbell.vexstats.ui.notifications
+package com.trimbell.vexstats.ui.events
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,20 +10,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.trimbell.vexstats.R
 
-class NotificationsFragment : Fragment() {
+class EventsFragment : Fragment() {
 
-    private lateinit var notificationsViewModel: NotificationsViewModel
+    private lateinit var eventsViewModel: EventsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        notificationsViewModel =
-            ViewModelProviders.of(this).get(NotificationsViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_notifications, container, false)
-        val textView: TextView = root.findViewById(R.id.text_notifications)
-        notificationsViewModel.text.observe(this, Observer {
+        eventsViewModel =
+            ViewModelProviders.of(this).get(EventsViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_events, container, false)
+        val textView: TextView = root.findViewById(R.id.text_dashboard)
+        eventsViewModel.text.observe(this, Observer {
             textView.text = it
         })
         return root
