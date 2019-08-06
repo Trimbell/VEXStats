@@ -31,18 +31,3 @@ class TeamsFragment : Fragment() {
         return root
     }
 }
-
-class Teams(
-    val number: String,
-    val program: String,
-    val team_name: String,
-    val robot_name: String,
-    val organization: String,
-    val city: String,
-    val region: String,
-    val country: String,
-    val grade: String,
-    val is_registered: Int
-) {
-
-}
