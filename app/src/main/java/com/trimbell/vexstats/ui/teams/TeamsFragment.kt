@@ -62,14 +62,17 @@ class TeamsFragment : Fragment() {
             }
         })
 
-        fetchDataFromServer(adapter)
+        if(!teamsViewModel.hasViewModelBeenCalled) fetchDataFromServer(adapter)
 
     }
+
     private fun fetchDataFromServer(adapter: TeamRecyclerViewAdapter) {
 
         val apiCalls = RetroFitInstance.retrofit
 
         val request = apiCalls.create(Endpoints::class.java).getTeamList()
+
+        progressBar.isVisible = true
 
         request.enqueue(object : Callback<BaseTeam> {
             // Tell the app what to do if the network call fails for any reason.
@@ -85,6 +88,8 @@ class TeamsFragment : Fragment() {
             // got your data yet.  A 404 from the API is a response.
             override fun onResponse(call: Call<BaseTeam>, response: Response<BaseTeam>) {
                 // Get response code
+                progressBar.isVisible = false
+
                 when (response.code()) {
                     // 200 equals a successful GET request that will contain the data requested
                     200 -> {
@@ -93,7 +98,7 @@ class TeamsFragment : Fragment() {
 //                            adapter.submitList(it.result)
                             teamsViewModel.updateViewModelList(it.result!!.toMutableList())
 
-                            progressBar.isVisible = false
+                            teamsViewModel.hasViewModelBeenCalled = true
                         }
                     }
                     else -> {

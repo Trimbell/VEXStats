@@ -14,4 +14,6 @@ class TeamsViewModel : ViewModel() {
         _myTeams.postValue(list)
     }
 
+    var hasViewModelBeenCalled = false
+
 }

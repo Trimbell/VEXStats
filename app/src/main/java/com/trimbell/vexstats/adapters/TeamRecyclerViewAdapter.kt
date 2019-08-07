@@ -49,10 +49,10 @@ class TeamViewHolder(itemView: View, private val onClick: (Int) -> Unit) :
 class TeamDiffCallback : DiffUtil.ItemCallback<Team>() {
 
     override fun areItemsTheSame(oldItem: Team, newItem: Team): Boolean {
-        return false
+        return oldItem === newItem
     }
 
     override fun areContentsTheSame(oldItem: Team, newItem: Team): Boolean {
-        return false
+        return oldItem == newItem
     }
 }
