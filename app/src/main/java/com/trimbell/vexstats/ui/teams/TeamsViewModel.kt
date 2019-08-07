@@ -10,11 +10,15 @@ class TeamsViewModel : ViewModel() {
     private val _myTeams: MutableLiveData<MutableList<Team>> = MutableLiveData()
     val myTeams: LiveData<MutableList<Team>> = _myTeams
 
-    init {
-        val teams = mutableListOf(
-            Team(),
-            Team()
-        )
-        _myTeams.postValue(teams)
+//    init {
+//        val teams = mutableListOf(
+//            Team(),
+//            Team()
+//        )
+//        _myTeams.postValue(teams)
+//    }
+
+    fun updateViewModelList(list: MutableList<Team>) {
+        _myTeams.postValue(list)
     }
 }

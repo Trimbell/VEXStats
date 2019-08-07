@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,11 +16,12 @@ import com.trimbell.vexstats.R
 import com.trimbell.vexstats.adapters.TeamRecyclerViewAdapter
 import com.trimbell.vexstats.services.network.Endpoints
 import com.trimbell.vexstats.services.network.RetroFitInstance
-import com.trimbell.vexstats.services.teams.model.Team
+import com.trimbell.vexstats.services.teams.model.BaseTeam
 import kotlinx.android.synthetic.main.fragment_teams.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.Observer
 
 
 class TeamsFragment : Fragment() {
@@ -56,11 +56,13 @@ class TeamsFragment : Fragment() {
             )
         }
 
-        teamsViewModel.myTeams.observe(this, Observer {
+        teamsViewModel.myTeams.observe(this, androidx.lifecycle.Observer {
             it?.let { teamList ->
                 adapter.submitList(ArrayList(teamList))
             }
         })
+
+        fetchDataFromServer(adapter)
 
     }
     private fun fetchDataFromServer(adapter: TeamRecyclerViewAdapter) {
@@ -69,9 +71,9 @@ class TeamsFragment : Fragment() {
 
         val request = apiCalls.create(Endpoints::class.java).getTeamList()
 
-        request.enqueue(object : Callback<List<Team>> {
+        request.enqueue(object : Callback<BaseTeam> {
             // Tell the app what to do if the network call fails for any reason.
-            override fun onFailure(call: Call<List<Team>>, t: Throwable) {
+            override fun onFailure(call: Call<BaseTeam>, t: Throwable) {
                 // Logcat Warn
                 Log.w(javaClass.name, "getTeamList() failed. Error: ${t.message}")
 //                 Show pop up if Fragment is still in view
@@ -81,14 +83,15 @@ class TeamsFragment : Fragment() {
             }
             // Tell the app what to do if the network call responds.  This does not mean that it
             // got your data yet.  A 404 from the API is a response.
-            override fun onResponse(call: Call<List<Team>>, response: Response<List<Team>>) {
+            override fun onResponse(call: Call<BaseTeam>, response: Response<BaseTeam>) {
                 // Get response code
                 when (response.code()) {
                     // 200 equals a successful GET request that will contain the data requested
                     200 -> {
                         response.body()?.let {
 
-                            adapter.submitList(it)
+//                            adapter.submitList(it.result)
+                            teamsViewModel.updateViewModelList(it.result!!.toMutableList())
                         }
                     }
                     else -> {

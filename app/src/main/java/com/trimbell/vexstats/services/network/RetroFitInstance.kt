@@ -21,7 +21,7 @@ object RetroFitInstance {
     This is the part of the URL that never changes
     It is a constant value, and its name is in all caps to signify that.
     */
-    val BASE_URL = "https://vexdb.io"
+    val BASE_URL = "https://api.vexdb.io/"
 
     // This private variable is where the actual RetroFit is located
     // It is a singleton and its name is in all caps to signify that.
