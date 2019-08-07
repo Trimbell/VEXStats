@@ -8,6 +8,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.trimbell.vexstats.R
@@ -31,7 +32,7 @@ class TeamsFragment : Fragment() {
 
         val adapter = TeamRecyclerViewAdapter { position ->
             val bundle = bundleOf(getString(R.string.position_key) to position)
-            TODO("detail view not implemented")
+            findNavController().navigate(R.id.action_navigation_teams_to_teamsDetailFragment, bundle)
         }
 
         val myLayoutManager = LinearLayoutManager(requireContext())
