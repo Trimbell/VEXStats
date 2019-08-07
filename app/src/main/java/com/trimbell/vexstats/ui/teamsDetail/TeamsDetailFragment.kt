@@ -33,7 +33,7 @@ class TeamsDetailFragment : Fragment() {
 
         viewModel.myTeams.observe(this, Observer {
             it?.let { teamList ->
-                val position = arguments?.get(getString(R.string.position_key)) as Int
+                val position = arguments?.get(getString(R.string.TEAM_POSITION_KEY)) as Int
                 team = teamList[position]
                 team?.let { nonNullTeam ->
                     textViewTeamNumber.text = nonNullTeam.number

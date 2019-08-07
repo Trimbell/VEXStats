@@ -21,7 +21,6 @@ import kotlinx.android.synthetic.main.fragment_teams.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.Observer
 
 
 class TeamsFragment : Fragment() {
@@ -39,7 +38,7 @@ class TeamsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         val adapter = TeamRecyclerViewAdapter { position ->
-            val bundle = bundleOf(getString(R.string.position_key) to position)
+            val bundle = bundleOf(getString(R.string.TEAM_POSITION_KEY) to position)
             findNavController().navigate(R.id.action_navigation_teams_to_teamsDetailFragment, bundle)
         }
 

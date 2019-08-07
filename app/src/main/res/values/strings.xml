@@ -3,5 +3,5 @@
     <string name="title_favorites">Favorites</string>
     <string name="title_events">Events</string>
     <string name="title_teams">Teams</string>
-    <string name="position_key">POSITION_KEY</string>
+    <string name="TEAM_POSITION_KEY">TEAM_POSITION_KEY</string>
 </resources>
