@@ -1,9 +1,9 @@
-package com.trimbell.vexstats.services.teams.model
+package com.trimbell.vexstats.services.events.model
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-data class BaseTeam (
+data class BaseEvent (
 
     @Expose
     var status: Int? = null,
@@ -12,6 +12,6 @@ data class BaseTeam (
     var size: Int? = null,
 
     @Expose
-    var result: List<Team>? = null
+    var result: List<Event>? = null
 
 )

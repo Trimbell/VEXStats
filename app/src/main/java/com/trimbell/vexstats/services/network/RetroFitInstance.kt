@@ -3,18 +3,6 @@ package com.trimbell.vexstats.services.network
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-/**
- * 07 A singleton instance of a RetroFit Object.
- *
- * RetroFit is a very powerful library that will write code for us
- * to handle requesting data from an api in the background and parsing
- * the JSON to Kotlin Objects that can be used in code.
- *
- * A singleton is a way of ensuring that only one instance of an Object
- * is created at a time.
- *
- * @author Marshall Ladd
- */
 object RetroFitInstance {
 
     /*
@@ -35,7 +23,7 @@ object RetroFitInstance {
                         // Sets the URL
                         .baseUrl(BASE_URL)
                         // Tells RetroFit that we will be getting JSON and would like to
-                        // convert it to Kotlin objects useing the GSON converter library.
+                        // convert it to Kotlin objects using the GSON converter library.
                         .addConverterFactory(GsonConverterFactory.create())
                         // Finally builds our RetroFit and assigns it to INSTANCE
                         .build().also { INSTANCE = it }

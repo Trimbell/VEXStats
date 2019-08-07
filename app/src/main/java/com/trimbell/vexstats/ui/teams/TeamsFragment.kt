@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -91,6 +92,8 @@ class TeamsFragment : Fragment() {
 
 //                            adapter.submitList(it.result)
                             teamsViewModel.updateViewModelList(it.result!!.toMutableList())
+
+                            progressBar.isVisible = false
                         }
                     }
                     else -> {
