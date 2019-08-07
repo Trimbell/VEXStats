@@ -4,6 +4,7 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 class Team {
+
     @SerializedName("number")
     @Expose
     var number: String? = null
@@ -43,4 +44,5 @@ class Team {
     @SerializedName("is_registered")
     @Expose
     var isRegistered: Int? = null
+
 }
